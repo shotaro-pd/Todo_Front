@@ -1,9 +1,23 @@
 <template>
   <div id="app">
-    <div class="task" v-for="(task) in tasks.data" :key = 'task.id'>
-      <p>{{ task.text }}</p>
-      <p>{{ task.tag }}</p>
-    </div>
+    <v-card class="task mx-auto" v-for="(task) in tasks.data" :key = 'task.id' color="#F9FBE7" elevation="4">
+      <v-card-title>
+        #{{ task.id }}  {{ task.text }}
+      </v-card-title>
+      <v-divider class="mx-4"></v-divider>
+      <v-card-actions>
+        <v-btn color = "#01579B" x-small elevation="5" rounded outlined>
+          {{ task.tag }}
+        </v-btn>
+      </v-card-actions>
+      <v-card-actions class="text-right">
+        <!-- v-spacerはほかの要素の右寄せに使う -->
+        <v-spacer></v-spacer>
+        <v-btn text color="#3F51B5">
+          完了
+        </v-btn>
+      </v-card-actions>
+    </v-card>
   </div>
 </template>
 
@@ -39,22 +53,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-div{
-  margin: 0px;
-  padding: 0px;
-  text-align: center;
-}
-h1 {
-  font-size: 72pt;
-  font-weight: bold;
-  text-align: center;
-  letter-spacing: -8px;
-  color: #f0f0f0;
-  margin: 0px;
-}
-p{
-  margin: 0px;
-  color: #666;
-  font-size: 16pt;
+.task{
+  margin: 10px 5px;
 }
 </style>
