@@ -1,11 +1,12 @@
 <template>
   <div class="hello">
     <h1>{{ title }}</h1>
-      <p>{ {message }}</p>
+      <p>{{ message }}</p>
   </div>
 </template>
 
 <script>
+//import axios from 'axios'
 export default {
   name: 'HelloWorld',
   props: {
@@ -17,18 +18,22 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+div{
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+h1 {
+  font-size: 72pt;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: -8px;
+  color: #f0f0f0;
+  margin: 0px;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+p{
+  margin: 0px;
+  color: #666;
+  font-size: 16pt;
 }
 </style>
