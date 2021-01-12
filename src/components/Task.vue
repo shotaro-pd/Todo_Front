@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="main">
     <v-card class="task mx-auto" v-for="(task) in tasks.data" :key = 'task.id' color="#F9FBE7" elevation="4">
       <v-card-title>
         #{{ task.id }}  {{ task.text }}
@@ -16,6 +16,7 @@
         <v-btn text color="#3F51B5">
           完了
         </v-btn>
+        
       </v-card-actions>
     </v-card>
   </div>
@@ -53,6 +54,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+/* #main{
+    margin-top: 60px;
+
+} */
+
 .task{
   margin: 10px 5px;
 }

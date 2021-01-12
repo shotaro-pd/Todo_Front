@@ -1,16 +1,20 @@
 <template>
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+    <Navigation/>
     <Task/>
   </div>
 </template>
 
 <script>
+import Navigation from './components/Navigation.vue'
 import Task from './components/Task.vue'
+
 
 export default {
   name: 'App',
   components: {
+    Navigation,
     Task
   }
 }
@@ -23,6 +27,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
-}
+  }
 </style>
