@@ -9,9 +9,18 @@
 
         <v-spacer></v-spacer>
 
-        <v-btn icon>
-          <v-icon>mdi-lead-pencil</v-icon>
-        </v-btn>
+        <Dialog/>
+        
       </v-app-bar>
 </template>
+<script>
+import Dialog from './Dialog.vue'
+
+
+export default {
+  components: {
+    Dialog,
+  }
+}
+</script>
 
