@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <Navigation/>
     <Task/>
@@ -26,6 +26,5 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
   }
 </style>

@@ -1,25 +1,27 @@
 <template>
-  <div id="main">
+  <v-app>
     <v-card class="task mx-auto" v-for="(task) in tasks.data" :key = 'task.id' color="#F9FBE7" elevation="4">
       <v-card-title>
         #{{ task.id }}  {{ task.text }}
       </v-card-title>
       <v-divider class="mx-4"></v-divider>
       <v-card-actions>
-        <v-btn color = "#01579B" x-small elevation="5" rounded outlined>
+        <v-btn color = "#01579B" x-small rounded outlined>
           {{ task.tag }}
         </v-btn>
       </v-card-actions>
       <v-card-actions class="text-right">
         <!-- v-spacerはほかの要素の右寄せに使う -->
         <v-spacer></v-spacer>
-        <v-btn text color="#3F51B5">
-          完了
+        <v-btn fab color="success" x-small>
+          <v-icon>
+              mdi-check-outline
+          </v-icon>
         </v-btn>
         
       </v-card-actions>
     </v-card>
-  </div>
+  </v-app>
 </template>
 
 <script>
