@@ -1,7 +1,4 @@
 <template>
-  <div>
-    <v-app>
-      
       <v-app-bar
         color="blue"
         app
@@ -13,11 +10,8 @@
         <v-spacer></v-spacer>
 
         <v-btn icon>
-          <v-icon>mdi-hammer-screwdriver</v-icon>
+          <v-icon>mdi-lead-pencil</v-icon>
         </v-btn>
       </v-app-bar>
-      
-    </v-app>
-  </div>
 </template>
 

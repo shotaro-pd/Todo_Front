@@ -1,21 +1,21 @@
 <template>
-  <div>
+  <v-app>
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <Navigation/>
+    <Header/>
     <Task/>
-  </div>
+  </v-app>
 </template>
 
 <script>
-import Navigation from './components/Navigation.vue'
+import Header from './components/Header.vue'
 import Task from './components/Task.vue'
 
 
 export default {
   name: 'App',
   components: {
-    Navigation,
-    Task
+    Header,
+    Task,
   }
 }
 </script>

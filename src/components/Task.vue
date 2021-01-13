@@ -1,6 +1,6 @@
 <template>
-  <v-app>
-    <v-card class="task mx-auto" v-for="(task) in tasks.data" :key = 'task.id' color="#F9FBE7" elevation="4">
+  <div id="main">
+    <v-card class="task mx-auto ma-3" v-for="(task) in tasks.data" :key = 'task.id' color="blue lighten-5" elevation="4">
       <v-card-title>
         #{{ task.id }}  {{ task.text }}
       </v-card-title>
@@ -13,7 +13,7 @@
       <v-card-actions class="text-right">
         <!-- v-spacerはほかの要素の右寄せに使う -->
         <v-spacer></v-spacer>
-        <v-btn fab color="success" x-small>
+        <v-btn fab color="success" x-small @click="delTask(task)">
           <v-icon>
               mdi-check-outline
           </v-icon>
@@ -21,7 +21,7 @@
         
       </v-card-actions>
     </v-card>
-  </v-app>
+  </div>
 </template>
 
 <script>
@@ -38,6 +38,12 @@ export default {
     }
   },
   methods: {
+    //画面表示
+    startApp: function(){
+      this.getTasks()
+    },
+
+    //Task取得
     getTasks: function() {
       axios.get(`http://${hostName}${path}`)
         .then((response) => {
@@ -46,22 +52,31 @@ export default {
         .catch(function(error) {
           console.log(error);
         });
+    },
+
+    //Task削除
+    //await 非同期処理を同期処理に変える役割
+    delTask: async function(task) {
+      await axios.delete(`http://${hostName}${path}/${task.id}`)
+        .then((response) => {
+          console.log(response)
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+        this.getTasks();
     }
   },
   mounted: function() {
-    this.getTasks();
+    this.startApp();
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-/* #main{
-    margin-top: 60px;
+ #main{
+    margin-top: 55px;
 
-} */
-
-.task{
-  margin: 10px 5px;
-}
+ }
 </style>
