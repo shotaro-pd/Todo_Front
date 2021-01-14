@@ -16,6 +16,9 @@ export default {
   components: {
     Header,
     Task,
+  },
+  mounted(){
+    document.title = "TODOアプリ";
   }
 }
 </script>
