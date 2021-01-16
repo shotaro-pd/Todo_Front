@@ -9,17 +9,33 @@
 
         <v-spacer></v-spacer>
 
-        <Dialog/>
-        
+        <Dialog @inputData="createTask"/>
       </v-app-bar>
 </template>
 <script>
 import Dialog from './Dialog.vue'
+import axios from 'axios';
 
+const hostName = 'localhost:3001';
+const path = '/api/tasks'
 
 export default {
   components: {
     Dialog,
+  },
+  methods: {
+    //Dialogで入力したデータを登録しに行く
+    createTask: function(taskName,tagName){
+      axios.post(`http://${hostName}${path}`,{
+        text: taskName,
+        tag: tagName
+      }).then((response) => {
+        console.log(response)
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    }
   }
 }
 </script>

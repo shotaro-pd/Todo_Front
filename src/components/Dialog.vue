@@ -15,10 +15,10 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field label="タスク名" required></v-text-field>
+                <v-text-field label="タスク名" v-model="taskName" required></v-text-field>
               </v-col>
               <v-col cols="6">
-                <v-text-field label="タグ名" hint=""></v-text-field>
+                <v-text-field label="タグ名" v-model="tagName"></v-text-field>
               </v-col>
             </v-row>
           </v-container>
@@ -26,7 +26,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="dialog = false">閉じる</v-btn>
-          <v-btn color="blue darken-1" text @click="dialog = false">追加</v-btn>
+          <v-btn color="blue darken-1" text @click="submitData">追加</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -36,6 +36,14 @@
   export default {
     data: () => ({
       dialog: false,
+      taskName: null,
+      tagName: null
     }),
+    methods:{
+      submitData: function(){
+        this.$emit('inputData',this.taskName,this.tagName)
+        this.dialog = false
+      }
+    }
   }
 </script>
