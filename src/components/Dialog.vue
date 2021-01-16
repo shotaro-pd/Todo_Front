@@ -15,7 +15,7 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field label="タスク名" v-model="taskName" required></v-text-field>
+                <v-text-field label="タスク名" v-model="taskName" required ref="task"></v-text-field>
               </v-col>
               <v-col cols="6">
                 <v-text-field label="タグ名" v-model="tagName"></v-text-field>
@@ -41,9 +41,17 @@
     }),
     methods:{
       submitData: function(){
-        this.$emit('inputData',this.taskName,this.tagName)
         this.dialog = false
+        this.$emit('inputData',this.taskName,this.tagName)
+        this.clearForm()
+      },
+      clearForm: function() {
+        this.taskName = null
+        this.tagName = null
       }
+    },
+    mounted: function() {
+      this.$refs.task.focus();
     }
   }
 </script>

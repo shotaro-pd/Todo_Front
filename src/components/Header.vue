@@ -25,14 +25,16 @@ export default {
   },
   methods: {
     //Dialogで入力したデータを登録しに行く
-    createTask: function(taskName,tagName){
-      axios.post(`http://${hostName}${path}`,{
+    createTask: async function(taskName,tagName){
+      await axios.post(`http://${hostName}${path}`,{
         text: taskName,
         tag: tagName
       }).then((response) => {
+        this.$emit('change')
         console.log(response)
       })
       .catch(function(error) {
+        //失敗時にトースト表示
         console.log(error);
       });
     }

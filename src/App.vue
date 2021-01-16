@@ -1,8 +1,8 @@
 <template>
   <v-app>
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <Header/>
-    <Task/>
+    <Header @change="callReflesh"/>
+    <Task ref="task" />
   </v-app>
 </template>
 
@@ -16,6 +16,11 @@ export default {
   components: {
     Header,
     Task,
+  },
+  methods: {
+    callReflesh () {
+      this.$refs.task.startApp()
+    }
   },
   mounted(){
     document.title = "TODOアプリ";
