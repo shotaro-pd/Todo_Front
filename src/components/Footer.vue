@@ -1,6 +1,6 @@
 <template>
   <v-footer>
-    Hello
+    Hellow World
   </v-footer>
 </template>
 
