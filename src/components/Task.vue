@@ -12,6 +12,7 @@
       </v-card-actions>
       <v-card-actions class="text-right">
         <!-- v-spacerはほかの要素の右寄せに使う -->
+        <Dialog @inputData="changeTask" :title="task.id" :taskName="task.text" :tagName= "task.tag"/>
         <v-spacer></v-spacer>
         <v-btn fab color="success" x-small @click="delTask(task)">
           <v-icon>
@@ -25,6 +26,7 @@
 
 <script>
 import axios from 'axios';
+import Dialog from './Dialog.vue'
 
 const hostName = 'localhost:3001';
 const path = '/api/tasks'
@@ -35,6 +37,9 @@ export default {
     return {
       tasks: [],
     }
+  },
+  components: {
+    Dialog,
   },
   methods: {
     //画面表示
@@ -53,11 +58,25 @@ export default {
         });
     },
 
-    //Task削除
+    //Task変更
     //await 非同期処理を同期処理に変える役割
     delTask: async function(task) {
       await axios.delete(`http://${hostName}${path}/${task.id}`)
         .then((response) => {
+          console.log(response)
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+      this.getTasks();
+    },
+    //Task削除
+    //await 非同期処理を同期処理に変える役割
+    changeTask: async function(task,taskName,tagName) {
+      await axios.put(`http://${hostName}${path}/${task.id}`,{
+        text: taskName,
+        tag: tagName
+      }).then((response) => {
           console.log(response)
         })
         .catch(function(error) {

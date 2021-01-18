@@ -9,16 +9,22 @@
       </template>
       <v-card>
         <v-card-title>
-          <span class="headline">新規タスク追加</span>
+          <span class="headline">
+            {{ title }}
+          </span>
         </v-card-title>
         <v-card-text>
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field label="タスク名" v-model="taskName" required autofocus></v-text-field>
+                <v-text-field label="タスク名" v-model="taskName" required autofocus>
+                  {{ taskName }}
+                </v-text-field>
               </v-col>
               <v-col cols="6">
-                <v-text-field label="タグ名" v-model="tagName"></v-text-field>
+                <v-text-field label="タグ名" v-model="tagName">
+                  {{ tagName }}
+                </v-text-field>
               </v-col>
             </v-row>
           </v-container>
@@ -36,9 +42,12 @@
   export default {
     data: () => ({
       dialog: false,
-      taskName: null,
-      tagName: null
     }),
+    props: {
+      title: String,
+      taskName: String,
+      tagName: String
+    },
     methods:{
       submitData: function(){
         this.dialog = false

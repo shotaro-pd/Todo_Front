@@ -9,7 +9,7 @@
 
         <v-spacer></v-spacer>
 
-        <Dialog @inputData="createTask"/>
+        <Dialog @inputData="createTask" :title="title" />
       </v-app-bar>
 </template>
 <script>
