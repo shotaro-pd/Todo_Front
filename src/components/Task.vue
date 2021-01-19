@@ -12,7 +12,7 @@
       </v-card-actions>
       <v-card-actions class="text-right">
         <!-- v-spacerはほかの要素の右寄せに使う -->
-        <Dialog @inputData="changeTask" :title="task.id" :taskName="task.text" :tagName= "task.tag"/>
+        <Dialog @inputData="changeTask" :title="dialogTitle" :taskName="task.text" :tagName= "task.tag"/>
         <v-spacer></v-spacer>
         <v-btn fab color="success" x-small @click="delTask(task)">
           <v-icon>
@@ -36,6 +36,7 @@ export default {
   data () {
     return {
       tasks: [],
+      dialogTitle: 'タスク内容修正'
     }
   },
   components: {

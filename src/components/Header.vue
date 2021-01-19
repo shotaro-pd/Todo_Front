@@ -9,7 +9,7 @@
 
         <v-spacer></v-spacer>
 
-        <Dialog @inputData="createTask" :title="title" />
+        <Dialog :title="dialogTitle" @inputData="createTask" />
       </v-app-bar>
 </template>
 <script>
@@ -23,6 +23,12 @@ export default {
   components: {
     Dialog,
   },
+  data() {
+    return {
+      dialogTitle: '新規タスク追加'
+    }
+  },
+
   methods: {
     //Dialogで入力したデータを登録しに行く
     createTask: async function(taskName,tagName){

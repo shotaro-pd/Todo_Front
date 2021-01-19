@@ -17,13 +17,13 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field label="タスク名" v-model="taskName" required autofocus>
-                  {{ taskName }}
+                <v-text-field label="タスク名" v-model="name" required autofocus>
+                  {{ name }}
                 </v-text-field>
               </v-col>
               <v-col cols="6">
-                <v-text-field label="タグ名" v-model="tagName">
-                  {{ tagName }}
+                <v-text-field label="タグ名" v-model="tag">
+                  {{ tag }}
                 </v-text-field>
               </v-col>
             </v-row>
@@ -42,6 +42,8 @@
   export default {
     data: () => ({
       dialog: false,
+      name: '',
+      tag: ''
     }),
     props: {
       title: String,
@@ -51,13 +53,27 @@
     methods:{
       submitData: function(){
         this.dialog = false
-        this.$emit('inputData',this.taskName,this.tagName)
+        this.$emit('inputData',this.name,this.tag)
         this.clearForm()
       },
       clearForm: function() {
-        this.taskName = null
-        this.tagName = null
+        this.name = null
+        this.tag = null
       }
+    },
+    watch: {
+        taskName: { // 外からプロパティの中身が変更になったら実行される
+            immediate: true,
+            handler(value) {
+                this.name = value;
+            }
+        },
+        tagName: { // 外からプロパティの中身が変更になったら実行される
+            immediate: true,
+            handler(value) {
+                this.tag = value;
+            }
+        }
     }
   }
 </script>
