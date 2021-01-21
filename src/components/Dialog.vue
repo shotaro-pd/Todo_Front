@@ -17,13 +17,13 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field label="タスク名" v-model="name" required autofocus>
-                  {{ name }}
+                <v-text-field label="タスク名" v-model="task.name" required autofocus>
+                  {{ task.name }}
                 </v-text-field>
               </v-col>
               <v-col cols="6">
-                <v-text-field label="タグ名" v-model="tag">
-                  {{ tag }}
+                <v-text-field label="タグ名" v-model="task.tag">
+                  {{ task.tag }}
                 </v-text-field>
               </v-col>
             </v-row>
@@ -42,18 +42,20 @@
   export default {
     data: () => ({
       dialog: false,
-      name: '',
-      tag: ''
+      task: {
+        name: '',
+        tag: '',
+        id: ''
+      }
     }),
     props: {
       title: String,
-      taskName: String,
-      tagName: String
+      motoTask: Object
     },
     methods:{
       submitData: function(){
         this.dialog = false
-        this.$emit('inputData',this.name,this.tag)
+        this.$emit('inputData',this.task)
         this.clearForm()
       },
       clearForm: function() {
@@ -62,16 +64,12 @@
       }
     },
     watch: {
-        taskName: { // 外からプロパティの中身が変更になったら実行される
+        motoTask: { // 外からプロパティの中身が変更になったら実行される
             immediate: true,
             handler(value) {
-                this.name = value;
-            }
-        },
-        tagName: { // 外からプロパティの中身が変更になったら実行される
-            immediate: true,
-            handler(value) {
-                this.tag = value;
+                this.name = value.text
+                this.tag = value.tag
+                this.id = value.id
             }
         }
     }

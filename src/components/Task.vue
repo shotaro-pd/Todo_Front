@@ -12,7 +12,10 @@
       </v-card-actions>
       <v-card-actions class="text-right">
         <!-- v-spacerはほかの要素の右寄せに使う -->
-        <Dialog @inputData="changeTask" :title="dialogTitle" :taskName="task.text" :tagName= "task.tag"/>
+        <Dialog
+          @inputData="changeTask(task)"
+          :title="dialogTitle"
+          :motoTask="task"/>
         <v-spacer></v-spacer>
         <v-btn fab color="success" x-small @click="delTask(task)">
           <v-icon>
@@ -59,7 +62,7 @@ export default {
         });
     },
 
-    //Task変更
+    //Task削除
     //await 非同期処理を同期処理に変える役割
     delTask: async function(task) {
       await axios.delete(`http://${hostName}${path}/${task.id}`)
@@ -71,18 +74,19 @@ export default {
         });
       this.getTasks();
     },
-    //Task削除
+
+    //Task変更
     //await 非同期処理を同期処理に変える役割
-    changeTask: async function(task,taskName,tagName) {
-      await axios.put(`http://${hostName}${path}/${task.id}`,{
-        text: taskName,
-        tag: tagName
+    changeTask: async function(task,text,tag) {
+      await axios.patch(`http://${hostName}${path}/${task.id}`,{
+        text: text,
+        tag: tag
       }).then((response) => {
-          console.log(response)
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+        console.log(response)
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
       this.getTasks();
     }
   },
