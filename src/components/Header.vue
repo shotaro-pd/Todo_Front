@@ -31,10 +31,10 @@ export default {
 
   methods: {
     //Dialogで入力したデータを登録しに行く
-    createTask: async function(taskName,tagName){
+    createTask: async function(task){
       await axios.post(`http://${hostName}${path}`,{
-        text: taskName,
-        tag: tagName
+        text: task.name,
+        tag: task.tag
       }).then((response) => {
         this.$emit('change')
         console.log(response)

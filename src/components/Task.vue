@@ -13,7 +13,7 @@
       <v-card-actions class="text-right">
         <!-- v-spacerはほかの要素の右寄せに使う -->
         <Dialog
-          @inputData="changeTask(task)"
+          @inputData="changeTask"
           :title="dialogTitle"
           :motoTask="task"/>
         <v-spacer></v-spacer>
@@ -77,10 +77,10 @@ export default {
 
     //Task変更
     //await 非同期処理を同期処理に変える役割
-    changeTask: async function(task,text,tag) {
+    changeTask: async function(task) {
       await axios.patch(`http://${hostName}${path}/${task.id}`,{
-        text: text,
-        tag: tag
+        text: task.name,
+        tag: task.tag
       }).then((response) => {
         console.log(response)
       })
