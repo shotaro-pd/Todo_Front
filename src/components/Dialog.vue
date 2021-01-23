@@ -47,7 +47,7 @@
         tag: '',
         id: ''
       },
-      oldVal: Object
+      val: Object
     }),
     props: {
       title: String,
@@ -67,10 +67,10 @@
     watch: {
       motoTask: { // 外からプロパティの中身が変更になったら実行される
         handler: function(val, oldVal) {
-            this.task.name = val.text
-            this.task.tag = val.tag
-            this.task.id = val.id
-            this.oldVal = oldVal
+            this.task.name = oldVal.text
+            this.task.tag = oldVal.tag
+            this.task.id = oldVal.id
+            this.oldVal = val
         }
       }
     }
