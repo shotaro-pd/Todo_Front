@@ -17,8 +17,8 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field label="タスク名" v-model="task.name" required autofocus>
-                  {{ task.name }}
+                <v-text-field label="タスク名" v-model="task.text" required autofocus>
+                  {{ task.text }}
                 </v-text-field>
               </v-col>
               <v-col cols="6">
@@ -43,9 +43,9 @@
     data: () => ({
       dialog: false,
       task: {
-        name: '',
+        text: '',
         tag: '',
-        id: ''
+        id : '',
       },
       val: Object
     }),
@@ -60,18 +60,22 @@
         this.clearForm()
       },
       clearForm: function() {
-        this.name = null
-        this.tag = null
+        this.task.text = null
+        this.task.tag = null
       }
     },
     watch: {
       motoTask: { // 外からプロパティの中身が変更になったら実行される
-        handler: function(val, oldVal) {
-            this.task.name = oldVal.text
-            this.task.tag = oldVal.tag
-            this.task.id = oldVal.id
-            this.oldVal = val
-        }
+        handler(val, oldVal) {
+          if (val !== null){
+            this.task.text = val.text
+            this.task.tag = val.tag
+            this.task.id = val.id
+            this.val = oldVal
+          }
+        },
+        deep: true,
+        immediate: true
       }
     }
   }

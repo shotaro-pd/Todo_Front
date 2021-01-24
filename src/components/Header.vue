@@ -9,7 +9,7 @@
 
         <v-spacer></v-spacer>
 
-        <Dialog :title="dialogTitle" @inputData="createTask" />
+        <Dialog :title="dialogTitle" :motoTask="task" @inputData="createTask" />
       </v-app-bar>
 </template>
 <script>
@@ -25,7 +25,12 @@ export default {
   },
   data() {
     return {
-      dialogTitle: '新規タスク追加'
+      dialogTitle: '新規タスク追加',
+      task: {
+        text: '',
+        tag: '',
+        id: '',
+      }
     }
   },
 
@@ -33,7 +38,7 @@ export default {
     //Dialogで入力したデータを登録しに行く
     createTask: async function(task){
       await axios.post(`http://${hostName}${path}`,{
-        text: task.name,
+        text: task.text,
         tag: task.tag
       }).then((response) => {
         this.$emit('change')

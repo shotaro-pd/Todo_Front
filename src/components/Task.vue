@@ -79,7 +79,7 @@ export default {
     //await 非同期処理を同期処理に変える役割
     changeTask: async function(task) {
       await axios.patch(`http://${hostName}${path}/${task.id}`,{
-        text: task.name,
+        text: task.text,
         tag: task.tag
       }).then((response) => {
         console.log(response)
