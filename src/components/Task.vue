@@ -58,6 +58,7 @@ export default {
           this.tasks = response.data;
         })
         .catch(function(error) {
+        this.errToast(error.message)
           console.log(error);
         });
     },
@@ -99,6 +100,10 @@ export default {
         console.log(error);
       });
       this.getTasks();
+    },
+    errToast:function(msg){
+      // main.jsで読み込んだので this.$toasted で呼び出せる
+      this.$toasted.error(msg);
     }
   },
   mounted: function() {

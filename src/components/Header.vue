@@ -10,6 +10,7 @@
 import Dialog from './Dialog.vue'
 import axios from 'axios';
 
+
 const hostName = 'localhost:3001';
 const path = '/api/tasks'
 
@@ -38,15 +39,22 @@ export default {
         this.showTask()
         console.log(response)
       })
-      .catch(function(error) {
+      .catch((error) => {
         //失敗時にトースト表示
-        console.log(error);
+        this.errToast(error.response.data.message)
+        console.log(error)
+        //this.errToast(error.response.data.message)
       });
     },
 
     showTask: function(){
       this.$emit('change')
-    }
+    },
+
+    errToast:function(msg){
+      // main.jsで読み込んだので this.$toasted で呼び出せる
+      this.$toasted.error(msg);
+    },
   }
 }
 </script>
