@@ -6,7 +6,7 @@
       </v-card-title>
       <v-divider class="mx-4"></v-divider>
       <v-card-actions>
-        <v-btn color = "#01579B" x-small rounded outlined>
+        <v-btn color = "#01579B" x-small rounded outlined @click="getTasksFindByTag(task)">
           {{ task.tag }}
         </v-btn>
       </v-card-actions>
@@ -54,6 +54,17 @@ export default {
     //Task取得
     getTasks: function() {
       axios.get(`http://${hostName}${path}`)
+        .then((response) => {
+          this.tasks = response.data;
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
+
+    //Task(タグで絞り込み)取得
+    getTasksFindByTag: function(task) {
+      axios.get(`http://${hostName}${path}/${task.tag}/show_tag`)
         .then((response) => {
           this.tasks = response.data;
         })
