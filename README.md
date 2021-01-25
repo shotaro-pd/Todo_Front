@@ -1,21 +1,21 @@
-# todo_front
+# todo_front(学習用)
 
-## Project setup
+## yarnのインストールをする
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### todo_frontを実行する
 ```
 yarn serve
 ```
 
-### Compiles and minifies for production
+### ビルドすることにより、新しいパソコンにプロジェクトを追加した状態でも、package.jsonの内容から必要なモジュールをインストールしてくれる
 ```
 yarn build
 ```
 
-### Lints and fixes files
+### 整理整頓
 ```
 yarn lint
 ```
