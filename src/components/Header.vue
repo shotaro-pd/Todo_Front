@@ -1,14 +1,8 @@
 <template>
-      <v-app-bar
-        color="blue"
-        app
-      >
+      <v-app-bar color="blue" app>
         <v-app-bar-nav-icon></v-app-bar-nav-icon>
-
-        <v-toolbar-title>ToDoリスト</v-toolbar-title>
-
+        <v-toolbar-title @click="showTask">ToDoリスト</v-toolbar-title>
         <v-spacer></v-spacer>
-
         <Dialog :title="dialogTitle" :motoTask="task" @inputData="createTask" />
       </v-app-bar>
 </template>
@@ -41,13 +35,17 @@ export default {
         text: task.text,
         tag: task.tag
       }).then((response) => {
-        this.$emit('change')
+        this.showTask()
         console.log(response)
       })
       .catch(function(error) {
         //失敗時にトースト表示
         console.log(error);
       });
+    },
+
+    showTask: function(){
+      this.$emit('change')
     }
   }
 }
