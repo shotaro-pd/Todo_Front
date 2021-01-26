@@ -20,7 +20,7 @@ export default {
   },
   data() {
     return {
-      dialogTitle: '新規タスク追加',
+      dialogTitle: '新規のタスク追加',
       task: {
         text: '',
         tag: '',
