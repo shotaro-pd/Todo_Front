@@ -38,12 +38,8 @@ export default {
       }).then((response) => {
         this.showTask()
         console.log(response)
-      })
-      .catch((error) => {
-        //失敗時にトースト表示
-        this.errToast(error.response.data.message)
+      }).catch((error) => {
         console.log(error)
-        //this.errToast(error.response.data.message)
       });
     },
 
@@ -51,10 +47,6 @@ export default {
       this.$emit('change')
     },
 
-    errToast:function(msg){
-      // main.jsで読み込んだので this.$toasted で呼び出せる
-      this.$toasted.error(msg);
-    },
   }
 }
 </script>
